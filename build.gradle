@@ -21,6 +21,27 @@ repositories {
     mavenCentral()
 }
 
+task copySubmodule(type: Copy) {
+    copy {
+        from 'eodya-backend-env/dev'
+        include "application-dev.yml"
+        into 'src/main/resources'
+    }
+
+    copy {
+        from 'eodya-backend-env/prod'
+        include "application-prod.yml"
+        into 'src/main/resources'
+    }
+
+    copy {
+        from 'eo dya-backend-env/test'
+        include "application-test.yml"
+        into 'src/test/resources'
+        rename("application-test.yml", "application.yml")
+    }
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'

@@ -1,0 +1,3 @@
+[submodule "eodya-backend-env"]
+	path = eodya-backend-env
+	url = https://github.com/eodya/eodya-backend-env.git
