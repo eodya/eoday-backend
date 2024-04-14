@@ -174,5 +174,10 @@ gradle-app.setting
 ### Gradle Patch ###
 # Java heap dump
 *.hprof
+/eodya-backend-env/dev/*
+/eodya-backend-env/prod/*
+/eodya-backend-env/test/*
+/eodya-backend-env/*
+
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij+all,macos
