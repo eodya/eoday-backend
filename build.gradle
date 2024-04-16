@@ -27,6 +27,7 @@ task copySubmodule(type: Copy) {
         from 'eodya-backend-env/dev'
         include "application-dev.yml"
         into 'src/main/resources'
+        rename("application-dev.yml", "application.yml")
     }
 
     copy {
@@ -36,10 +37,9 @@ task copySubmodule(type: Copy) {
     }
 
     copy {
-        from 'eo dya-backend-env/test'
+        from 'eodya-backend-env/test'
         include "application-test.yml"
         into 'src/test/resources'
-        rename("application-test.yml", "application.yml")
     }
 }
 
