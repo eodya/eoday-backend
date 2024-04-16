@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '3.2.4'
     id 'io.spring.dependency-management' version '1.1.4'
     id "org.sonarqube" version "4.4.1.3373"
+    id 'jacoco'
 }
 
 group = 'com.eodya'
@@ -43,6 +44,11 @@ task copySubmodule(type: Copy) {
     }
 }
 
+tasks.named('test') {
+    useJUnitPlatform()
+    finalizedBy 'jacocoTestReport'
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -65,5 +71,47 @@ sonar {
         property "sonar.projectKey", "eodya_eoday-backend"
         property "sonar.organization", "eodya-backend"
         property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+    }
+}
+
+jacoco {
+    toolVersion = '0.8.10'
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = false
+    }
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['**/com/eodya/backend/Application.class',
+                              '**/com/eodya/backend/config/**',
+                              '**/com/eodya/backend/dto/**',
+                              '**/com/eodya/backend/domain/enums/**',
+                              '**/com/eodya/backend/common/**',
+                    ])
+        }))
+    }
+
+    finalizedBy jacocoTestCoverageVerification
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = true
+            element = 'BUNDLE'
+
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.00
+            }
+        }
     }
 }
