@@ -1,5 +1,6 @@
 package com.eodya.backend.review.domain;
 
+import com.eodya.backend.recommendation.domain.Recommendation;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.OneToMany;
@@ -11,9 +12,9 @@ import java.util.List;
 public class ReviewRecommendation {
 
     @OneToMany(mappedBy = "review", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
-    private List<Review> reviewRecommendation = new ArrayList<>();
+    private List<Recommendation> reviewRecommendation = new ArrayList<>();
 
-    public void addMemberRecommendation(Review review) {
-        reviewRecommendation.add(review);
+    public void addReviewRecommendation(Recommendation recommendation) {
+        reviewRecommendation.add(recommendation);
     }
 }

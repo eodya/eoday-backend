@@ -3,6 +3,7 @@ package com.eodya.backend.recommendation.domain;
 import com.eodya.backend.common.entity.BaseEntity;
 import com.eodya.backend.member.domain.Member;
 import com.eodya.backend.place.domain.Place;
+import com.eodya.backend.review.domain.Review;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -22,8 +23,8 @@ public class Recommendation extends BaseEntity {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "review_id")
+    private Review review;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,10 +33,10 @@ public class Recommendation extends BaseEntity {
 
     @Builder
     private Recommendation(
-            Member member,
+            Review review,
             Place place
     ) {
-        this.member = member;
+        this.review = review;
         this.place = place;
     }
 }
