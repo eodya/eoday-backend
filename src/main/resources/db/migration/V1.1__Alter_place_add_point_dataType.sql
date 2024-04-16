@@ -1,0 +1,2 @@
+ALTER TABLE `place`
+    ADD COLUMN `point` POINT NOT NULL;

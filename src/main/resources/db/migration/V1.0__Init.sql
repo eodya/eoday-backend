@@ -85,12 +85,13 @@ CREATE TABLE `member`
     `updated_at`        DateTime     NOT NULL
 );
 
-CREATE TABLE `review_Image` (
-                                `id`	BIGINT	NOT NULL,
-                                `image_url`	varchar(600)	NULL,
-                                `created_at`	DateTime	NOT NULL,
-                                `updated_at`	DateTime	NOT NULL,
-                                `review_id`	BIGINT	NOT NULL
+CREATE TABLE `review_Image`
+(
+    `id`         BIGINT       NOT NULL,
+    `image_url`  varchar(600) NULL,
+    `created_at` DateTime     NOT NULL,
+    `updated_at` DateTime     NOT NULL,
+    `review_id`  BIGINT       NOT NULL
 );
 
 
@@ -235,9 +236,10 @@ ALTER TABLE `place_hashtag_map`
                              `id`
             );
 
-ALTER TABLE `review_Image` ADD CONSTRAINT `FK_review_TO_review_Image_1` FOREIGN KEY (
-                                                                                     `review_id`
-    )
-    REFERENCES `review` (
-                         `id`
-        );
+ALTER TABLE `review_Image`
+    ADD CONSTRAINT `FK_review_TO_review_Image_1` FOREIGN KEY (
+                                                              `review_id`
+        )
+        REFERENCES `review` (
+                             `id`
+            );
