@@ -90,9 +90,6 @@ jacocoTestReport {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it,
                     exclude: ['**/com/eodya/backend/Application.class',
-                              '**/com/eodya/backend/config/**',
-                              '**/com/eodya/backend/dto/**',
-                              '**/com/eodya/backend/domain/enums/**',
                               '**/com/eodya/backend/common/**',
                     ])
         }))
