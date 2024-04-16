@@ -180,6 +180,7 @@ gradle-app.setting
 /eodya-backend-env/*
 /src/main/resources/application-dev.yml
 /src/main/resources/application-prod.yml
-/src/main/resources/application-test.yml
+/src/main/resources/application.yml
+/src/test/resources/application-test.yml
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij+all,macos
