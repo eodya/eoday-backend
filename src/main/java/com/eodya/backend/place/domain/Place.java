@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.antlr.v4.runtime.misc.NotNull;
 
-import java.awt.*;
+import org.locationtech.jts.geom.*;
 
 @Getter
 @Entity
