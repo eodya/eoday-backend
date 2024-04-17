@@ -9,7 +9,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import org.locationtech.jts.geom.*;
 
@@ -23,40 +22,37 @@ public class Place extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(length = 30)
+    @Column(length = 30,nullable = false)
     private String name;
 
-    @NotNull
-    @Column(length = 255)
+    @Column(length = 255,nullable = false)
     private String image;
 
-    @NotNull
+    @Column(nullable = false)
     private Point point;
 
-    @NotNull
-    @Column(length = 100)
+    @Column(length = 100,nullable = false)
     private String addressDetail;
 
-    @NotNull
+    @Column(nullable = false)
     private Integer reviewCount;
 
-    @NotNull
+    @Column(nullable = false)
     private Integer bookmarkCount;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_depth1_id")
+    @Column(nullable = false, unique = true)
     private AddressDepth1 addressDepth1;
 
-    @NotNull
+    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_depth2_id")
     private AddressDepth2 addressDepth2;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @Column(nullable = false, unique = true)
     private Member member;
 
     @Builder

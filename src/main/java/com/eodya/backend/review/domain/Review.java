@@ -10,7 +10,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.LocalDate;
 
@@ -24,24 +23,22 @@ public class Review extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @Column(nullable = false)
     private LocalDate reviewDate;
 
-    @NotNull
-    @Column(length = 1000)
+    @Column(length = 1000, nullable = false)
     private String reviewContent;
 
-    @NotNull
     @Convert(converter = PlaceStatusConverter.class)
-    @Column(name = "place_status", length = 50)
+    @Column(name = "place_status", length = 50, nullable = false)
     private PlaceStatus placeStatus;
 
-    @NotNull
+    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "place_id")
     private Place place;
 
-    @NotNull
+    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
