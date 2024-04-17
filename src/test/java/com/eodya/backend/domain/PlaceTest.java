@@ -13,6 +13,7 @@ import org.locationtech.jts.geom.Point;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static com.eodya.backend.place.domain.PlaceStatus.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PlaceTest {
@@ -35,6 +36,7 @@ class PlaceTest {
         assertEquals(0, place.getReviewCount());
         assertEquals(0, place.getBookmarkCount());
         assertEquals(member, place.getMember());
+        assertEquals(BLOOMING, place.getPlaceStatus());
         assertEquals("서울시", place.getAddressDepth1().getName());
         assertEquals("강남구", place.getAddressDepth2().getName());
     }
@@ -58,6 +60,7 @@ class PlaceTest {
             assertEquals(String.format("테스트 장소 %d", i), place.getName());
             assertEquals(String.format("서울특별시 강남구 논현동 %d", i), place.getAddressDetail());
             assertEquals(member, place.getMember());
+            assertEquals(BLOOMING, place.getPlaceStatus());
             assertEquals(0, place.getReviewCount());
             assertEquals(0, place.getBookmarkCount());
             assertEquals("서울시", place.getAddressDepth1().getName());

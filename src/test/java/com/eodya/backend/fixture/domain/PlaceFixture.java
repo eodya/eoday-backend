@@ -11,6 +11,8 @@ import org.locationtech.jts.geom.Point;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static com.eodya.backend.place.domain.PlaceStatus.*;
+
 public class PlaceFixture {
 
     private static final GeometryFactory geometryFactory = new GeometryFactory();
@@ -27,6 +29,7 @@ public class PlaceFixture {
                 .name(name)
                 .addressDetail(addressDetail)
                 .member(member)
+                .placeStatus(BLOOMING)
                 .addressDepth1(addressDepth1)
                 .addressDepth2(addressDepth2)
                 .build();
@@ -39,6 +42,7 @@ public class PlaceFixture {
                         .name(String.format("테스트 장소 %d", i))
                         .addressDetail(String.format("서울특별시 강남구 논현동 %d", i))
                         .member(member)
+                        .placeStatus(BLOOMING)
                         .addressDepth1(AddressDepthFixture.addressDepth1Build())
                         .addressDepth2(AddressDepthFixture.addressDepth2Build(AddressDepthFixture.addressDepth1Build()))
                         .build())

@@ -4,6 +4,7 @@ import com.eodya.backend.address.domain.AddressDepth1;
 import com.eodya.backend.address.domain.AddressDepth2;
 import com.eodya.backend.common.entity.BaseEntity;
 import com.eodya.backend.member.domain.Member;
+import com.eodya.backend.place.util.PlaceStatusConverter;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -22,16 +23,16 @@ public class Place extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 30,nullable = false)
+    @Column(length = 30, nullable = false)
     private String name;
 
-    @Column(length = 255,nullable = false)
+    @Column(length = 255, nullable = false)
     private String image;
 
     @Column(nullable = false)
     private Point point;
 
-    @Column(length = 100,nullable = false)
+    @Column(length = 100, nullable = false)
     private String addressDetail;
 
     @Column(nullable = false)
@@ -55,6 +56,10 @@ public class Place extends BaseEntity {
     @Column(nullable = false, unique = true)
     private Member member;
 
+    @Convert(converter = PlaceStatusConverter.class)
+    @Column(name = "place_status", length = 50, nullable = false)
+    private PlaceStatus placeStatus;
+
     @Builder
     private Place(
             String name,
@@ -63,6 +68,7 @@ public class Place extends BaseEntity {
             String addressDetail,
             AddressDepth1 addressDepth1,
             AddressDepth2 addressDepth2,
+            PlaceStatus placeStatus,
             Member member
     ) {
         this.name = name;
@@ -73,6 +79,7 @@ public class Place extends BaseEntity {
         this.addressDetail = addressDetail;
         this.addressDepth1 = addressDepth1;
         this.addressDepth2 = addressDepth2;
+        this.placeStatus = placeStatus;
         this.member = member;
     }
 }
