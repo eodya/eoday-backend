@@ -4,7 +4,6 @@ import com.eodya.backend.auth.domain.OauthProvider;
 import com.eodya.backend.member.domain.Member;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static com.eodya.backend.auth.domain.OauthProvider.*;
@@ -30,6 +29,6 @@ public class MemberFixture {
                         .oauthId(i + 1)
                         .oauthProvider(oauthProvider)
                         .build())
-                .collect(Collectors.toList());
+                .toList();
     }
 }

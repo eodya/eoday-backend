@@ -8,9 +8,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class PlaceFixture {
@@ -44,7 +42,7 @@ public class PlaceFixture {
                         .addressDepth1(AddressDepthFixture.addressDepth1Build())
                         .addressDepth2(AddressDepthFixture.addressDepth2Build(AddressDepthFixture.addressDepth1Build()))
                         .build())
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static Point pointBuild(double x, double y) {
