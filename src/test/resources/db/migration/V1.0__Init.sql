@@ -27,7 +27,7 @@ CREATE TABLE `place`
     `name`              varchar(30)  NOT NULL,
     `image`             varchar(255) NOT NULL,
     `address_detail`    varchar(100) NOT NULL,
-    `point`             point        NOT NULL,
+    `point`             GEOMETRY     NOT NULL,
     `review_count`      INT          NOT NULL,
     `bookmark_count`    INT          NOT NULL,
     `created_at`        DateTime     NOT NULL,
