@@ -1,4 +1,4 @@
-package com.eodya.backend.place.domain;
+package com.eodya.backend.review.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -9,9 +9,9 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 @Getter
 @Entity
-@Table(name = "place_hashtag_map")
+@Table(name = "review_hashtag_map")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PlaceHashTagMap {
+public class ReviewHashTagMap {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +19,8 @@ public class PlaceHashTagMap {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "place_id")
-    private Place place;
+    @JoinColumn(name = "review_id")
+    private Review review;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -28,11 +28,11 @@ public class PlaceHashTagMap {
     private HashTag hashTag;
 
     @Builder
-    private PlaceHashTagMap(
-            Place place,
+    private ReviewHashTagMap(
+            Review review,
             HashTag hashTag
     ) {
-        this.place = place;
+        this.review = review;
         this.hashTag = hashTag;
     }
 }
