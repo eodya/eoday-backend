@@ -20,13 +20,11 @@ public class Bookmark extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(nullable = false, unique = true)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id",nullable = false, unique = true)
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "place_id")
-    @Column(nullable = false, unique = true)
+    @JoinColumn(name = "place_id",nullable = false, unique = true)
     private Place place;
 
     @Builder

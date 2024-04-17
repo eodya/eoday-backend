@@ -33,14 +33,12 @@ public class Review extends BaseEntity {
     @Column(name = "place_status", length = 50, nullable = false)
     private PlaceStatus placeStatus;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "place_id")
+    @JoinColumn(name = "place_id",nullable = false)
     private Place place;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id",nullable = false)
     private Member member;
 
     @Embedded

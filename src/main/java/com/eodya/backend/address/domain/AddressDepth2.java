@@ -21,8 +21,7 @@ public class AddressDepth2 extends BaseEntity {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(nullable = false, unique = true)
-    @JoinColumn(name = "address_depth1_id")
+    @JoinColumn(name = "address_depth1_id",nullable = false, unique = true)
     private AddressDepth1 addressDepth1;
 
     @Builder

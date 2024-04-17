@@ -16,14 +16,12 @@ public class ReviewHashTagMap {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id")
+    @JoinColumn(name = "review_id",nullable = false, unique = true)
     private Review review;
 
-    @Column(nullable = false, unique = true)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hash_tag_id")
+    @JoinColumn(name = "hash_tag_id",nullable = false, unique = true)
     private HashTag hashTag;
 
     @Builder

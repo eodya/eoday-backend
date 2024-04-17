@@ -42,18 +42,15 @@ public class Place extends BaseEntity {
     private Integer bookmarkCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_depth1_id")
-    @Column(nullable = false, unique = true)
+    @JoinColumn(name = "address_depth1_id", nullable = false, unique = true)
     private AddressDepth1 addressDepth1;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_depth2_id")
+    @JoinColumn(name = "address_depth2_id",nullable = false)
     private AddressDepth2 addressDepth2;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    @Column(nullable = false, unique = true)
+    @JoinColumn(name = "member_id", nullable = false, unique = true)
     private Member member;
 
     @Convert(converter = PlaceStatusConverter.class)
