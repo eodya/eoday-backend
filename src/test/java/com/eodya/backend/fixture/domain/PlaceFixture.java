@@ -4,6 +4,7 @@ import com.eodya.backend.address.domain.AddressDepth1;
 import com.eodya.backend.address.domain.AddressDepth2;
 import com.eodya.backend.member.domain.Member;
 import com.eodya.backend.place.domain.Place;
+import com.eodya.backend.place.domain.PlaceImage;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
@@ -45,6 +46,22 @@ public class PlaceFixture {
                         .placeStatus(BLOOMING)
                         .addressDepth1(AddressDepthFixture.addressDepth1Build())
                         .addressDepth2(AddressDepthFixture.addressDepth2Build(AddressDepthFixture.addressDepth1Build()))
+                        .build())
+                .toList();
+    }
+
+    public static PlaceImage placeImageBuild(Place place) {
+        return PlaceImage.builder()
+                .imageUrl("http://example.com/image.jpg")
+                .place(place)
+                .build();
+    }
+
+    public static List<PlaceImage> placeImagesBuild(Place place, int imageCount) {
+        return IntStream.range(0, imageCount)
+                .mapToObj(i -> PlaceImage.builder()
+                        .imageUrl(String.format("http://example.com/image%d.jpg", i))
+                        .place(place)
                         .build())
                 .toList();
     }

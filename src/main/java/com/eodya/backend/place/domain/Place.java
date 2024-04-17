@@ -26,9 +26,6 @@ public class Place extends BaseEntity {
     @Column(length = 30, nullable = false)
     private String name;
 
-    @Column(length = 255, nullable = false)
-    private String image;
-
     @Column(nullable = false)
     private Point point;
 
@@ -60,7 +57,6 @@ public class Place extends BaseEntity {
     @Builder
     private Place(
             String name,
-            String image,
             Point point,
             String addressDetail,
             AddressDepth1 addressDepth1,
@@ -69,7 +65,6 @@ public class Place extends BaseEntity {
             Member member
     ) {
         this.name = name;
-        this.image = image;
         this.point = point;
         this.reviewCount = 0;
         this.bookmarkCount = 0;
