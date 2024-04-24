@@ -30,19 +30,30 @@ test {
 }
 
 asciidoctor {
-    inputs.dir snippetsDir
-    sources {
-        include '**/*.adoc'
+    doFirst {
+        delete file("src/main/resources/static/docs")
     }
-    outputDir file("$buildDir/docs")
     dependsOn test
+    inputs.dir snippetsDir
+}
+
+task copyDocument(type: Copy) {
+    dependsOn asciidoctor
+    from file("${asciidoctor.outputDir}")
+    into file("src/main/resources/static/docs")
+}
+
+build {
+    dependsOn copyDocument
 }
 
 bootJar {
     dependsOn asciidoctor
-    from ("${asciidoctor.outputDir}") {
+    from("${asciidoctor.outputDir}") {
         into 'BOOT-INF/classes/static/docs'
     }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    mainClass = 'com.eodya.backend.BackendApplication'
 }
 
 repositories {
@@ -111,9 +122,9 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it,
-                    exclude: ['**/com/eodya/backend/Application.class',
-                              '**/com/eodya/backend/common/**',
-                    ])
+                    exclude:
+                            '**/com/eodya/backend/common/**',
+            )
         }))
     }
 
