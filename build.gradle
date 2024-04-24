@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '3.2.4'
     id 'io.spring.dependency-management' version '1.1.4'
     id "org.sonarqube" version "4.4.1.3373"
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
     id 'jacoco'
 }
 
@@ -17,6 +18,42 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+}
+
+ext {
+    snippetsDir = file("$buildDir/generated-snippets")
+}
+
+test {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
+asciidoctor {
+    doFirst {
+        delete file("src/main/resources/static/docs")
+    }
+    dependsOn test
+    inputs.dir snippetsDir
+}
+
+task copyDocument(type: Copy) {
+    dependsOn asciidoctor
+    from file("${asciidoctor.outputDir}")
+    into file("src/main/resources/static/docs")
+}
+
+build {
+    dependsOn copyDocument
+}
+
+bootJar {
+    dependsOn asciidoctor
+    from("${asciidoctor.outputDir}") {
+        into 'BOOT-INF/classes/static/docs'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    mainClass = 'com.eodya.backend.BackendApplication'
 }
 
 repositories {
@@ -55,6 +92,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation group: 'org.hibernate', name: 'hibernate-spatial', version: '6.4.1.Final'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
 
 tasks.named('test') {
@@ -84,9 +122,9 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it,
-                    exclude: ['**/com/eodya/backend/Application.class',
-                              '**/com/eodya/backend/common/**',
-                    ])
+                    exclude:
+                            '**/com/eodya/backend/common/**',
+            )
         }))
     }
 

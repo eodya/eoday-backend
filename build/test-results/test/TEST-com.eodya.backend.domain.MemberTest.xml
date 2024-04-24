@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.eodya.backend.domain.MemberTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-04-24T10:34:29" hostname="Jaehoonui-MacBookAir.local" time="0.005">
+  <properties/>
+  <testcase name="정상적으로 회원을 생성할 수 있다." classname="com.eodya.backend.domain.MemberTest" time="0.0"/>
+  <testcase name="[1] count=1" classname="com.eodya.backend.domain.MemberTest" time="0.0"/>
+  <testcase name="[2] count=2" classname="com.eodya.backend.domain.MemberTest" time="0.0"/>
+  <testcase name="[3] count=3" classname="com.eodya.backend.domain.MemberTest" time="0.001"/>
+  <testcase name="[4] count=4" classname="com.eodya.backend.domain.MemberTest" time="0.001"/>
+  <testcase name="[5] count=5" classname="com.eodya.backend.domain.MemberTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

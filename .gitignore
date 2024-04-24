@@ -150,8 +150,6 @@ Temporary Items
 
 ### Gradle ###
 .gradle
-**/build/
-!src/**/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -184,3 +182,7 @@ gradle-app.setting
 /src/test/resources/application-test.yml
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij+all,macos
+/build/resources/main/application.yml
+/build/resources/main/application-prod.yml
+/build/resources/test/application-test.yml
+/build/resources/main/application-dev.yml

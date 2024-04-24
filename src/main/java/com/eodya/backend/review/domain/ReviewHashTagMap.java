@@ -5,7 +5,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 
 @Getter
 @Entity
@@ -17,14 +16,12 @@ public class ReviewHashTagMap {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id")
+    @JoinColumn(name = "review_id",nullable = false, unique = true)
     private Review review;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hash_tag_id")
+    @JoinColumn(name = "hash_tag_id",nullable = false, unique = true)
     private HashTag hashTag;
 
     @Builder

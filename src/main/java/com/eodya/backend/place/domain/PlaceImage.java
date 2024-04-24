@@ -1,4 +1,4 @@
-package com.eodya.backend.review.domain;
+package com.eodya.backend.place.domain;
 
 import com.eodya.backend.common.entity.BaseEntity;
 import jakarta.persistence.*;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "review_image")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ReviewImage extends BaseEntity {
+public class PlaceImage extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,12 +21,12 @@ public class ReviewImage extends BaseEntity {
     private String imageUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id",nullable = false)
-    private Review review;
+    @JoinColumn(name = "place_id", nullable = false)
+    private Place place;
 
     @Builder
-    public ReviewImage(String imageUrl, Review review) {
+    public PlaceImage(String imageUrl, Place place) {
         this.imageUrl = imageUrl;
-        this.review = review;
+        this.place = place;
     }
 }

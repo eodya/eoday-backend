@@ -6,7 +6,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 
 @Getter
 @Entity
@@ -18,22 +17,19 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(length = 100)
+    @Column(length = 100, nullable = false, unique = true)
     private String email;
 
-    @NotNull
-    @Column(length = 30)
+    @Column(length = 30, nullable = false, unique = true)
     private String nickname;
 
-    @NotNull
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String profileImageUrl;
 
-    @NotNull
+    @Column(nullable = false, unique = true)
     private Integer oauthId;
 
-    @NotNull
+    @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private OauthProvider oauthProvider;
 
